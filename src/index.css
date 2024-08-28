@@ -1,0 +1,70 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 210 100% 98%; /* Light blue background */
+    --foreground: 220 15% 15%; /* Darker, more neutral text color */
+    --card: 210 100% 98%;
+    --card-foreground: 220 15% 15%; /* Neutral text color */
+    --popover: 210 100% 98%;
+    --popover-foreground: 220 15% 15%; /* Neutral text color */
+    --primary: 210 100% 40%; /* Blue primary color */
+    --primary-foreground: 0 0% 100%; /* White text for primary buttons */
+    --secondary: 210 50% 90%; /* Lighter blue secondary color */
+    --secondary-foreground: 220 15% 15%; /* Neutral text color */
+    --muted: 210 50% 90%; /* Muted blue background */
+    --muted-foreground: 220 15% 15%; /* Neutral text color */
+    --accent: 210 100% 90%; /* Light accent color */
+    --accent-foreground: 220 15% 15%; /* Neutral text color */
+    --destructive: 0 84.2% 60.2%; /* Red color for destructive actions */
+    --destructive-foreground: 0 0% 100%; /* White text for destructive buttons */
+    --border: 210 20% 90%; /* Light blue border */
+    --input: 210 20% 90%; /* Light blue input background */
+    --ring: 210 100% 40%; /* Blue ring color */
+    --radius: 0.5rem;
+    --chart-1: 210 100% 40%;
+    --chart-2: 210 70% 60%;
+    --chart-3: 210 50% 70%;
+    --chart-4: 210 30% 80%;
+    --chart-5: 210 10% 90%;
+  }
+
+  .dark {
+    --background: 210 100% 10%; /* Dark blue background for dark mode */
+    --foreground: 0 0% 90%; /* Light grey text color for dark mode */
+    --card: 210 100% 10%; /* Dark blue card background for dark mode */
+    --card-foreground: 0 0% 90%; /* Light grey text color for dark mode */
+    --popover: 210 100% 10%; /* Dark blue popover background */
+    --popover-foreground: 0 0% 90%; /* Light grey text color */
+    --primary: 210 100% 98%; /* Light blue primary for dark mode */
+    --primary-foreground: 210 100% 10%; /* Dark blue text for primary buttons in dark mode */
+    --secondary: 210 100% 20%; /* Slightly lighter blue secondary color */
+    --secondary-foreground: 0 0% 90%; /* Light grey text color */
+    --muted: 210 100% 20%; /* Muted blue background for dark mode */
+    --muted-foreground: 210 70% 70%; /* Lighter text color */
+    --accent: 210 100% 20%; /* Blue accent color for dark mode */
+    --accent-foreground: 0 0% 90%; /* Light grey text color */
+    --destructive: 0 62.8% 30.6%; /* Red color for destructive actions in dark mode */
+    --destructive-foreground: 0 0% 98%; /* White text for destructive buttons */
+    --border: 210 100% 20%; /* Darker blue border */
+    --input: 210 100% 20%; /* Darker blue input background */
+    --ring: 210 50% 40%; /* Blue ring color */
+    --chart-1: 210 100% 40%;
+    --chart-2: 210 70% 60%;
+    --chart-3: 210 50% 70%;
+    --chart-4: 210 30% 80%;
+    --chart-5: 210 10% 90%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-style: italic;
+  }
+}
