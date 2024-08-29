@@ -4,7 +4,9 @@ const initialState = {
   user: localStorage.getItem("userInfo")
     ? JSON.parse(localStorage.getItem("userInfo")!)
     : null,
-  accessToken: null,
+  accessToken: localStorage.getItem("accessToken")
+  ? JSON.parse(localStorage.getItem("accessToken")!)
+  : null,
 };
 
 const userSlice = createSlice({

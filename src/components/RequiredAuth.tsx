@@ -14,6 +14,11 @@ const RequireAuth = () => {
   });
 
   useEffect(() => {
+    const handleBeforeUnload = () => {
+      dispatch(logOut());
+    };
+    window.addEventListener("beforeunload", handleBeforeUnload);
+
     if (updatedAt) {
       const updatedAtDate = new Date(updatedAt);
       const now = new Date();
@@ -28,6 +33,10 @@ const RequireAuth = () => {
         return () => clearTimeout(timeoutId);
       }
     }
+
+    return () => {
+      window.removeEventListener("beforeunload", handleBeforeUnload);
+    };
   }, [updatedAt, dispatch]);
 
   const location = useLocation();
