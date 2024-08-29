@@ -10,11 +10,13 @@ import { useState } from "react";
 import { Eye, EyeOff } from "lucide-react";
 import logo from "assets/logo.png";
 import bg from "assets/bg.jpeg";
+import { setToken, setUser } from "store/reducers/userReducer";
+import { useNavigate } from "react-router-dom";
 
 type Props = {};
 
 const schema = z.object({
-  email: z.string().email("Invalid email address"),
+  username: z.string().min(4, "Username must be at least 4 characters long"),
   password: z.string().min(8, "Password must be at least 8 characters long"),
 });
 
@@ -25,6 +27,7 @@ const Login = (props: Props) => {
   const dispatch = useDispatch();
   const [loginApiCall, { isLoading }] = useLoginMutation();
   const [showPassword, setShowPassword] = useState(false);
+  const navigate = useNavigate();
 
   const {
     register,
@@ -42,8 +45,9 @@ const Login = (props: Props) => {
         description: "You're successfully logged in",
       });
 
-      // dispatch(setUser(res.data));
-      // dispatch(setToken(res.data.accessToken))
+      dispatch(setUser(res.data));
+      dispatch(setToken(res.data.userId));
+      navigate("/confirmation-page");
     } catch (err: any) {
       toast({
         variant: "destructive",
@@ -68,23 +72,23 @@ const Login = (props: Props) => {
         >
           <div className="relative">
             <label
-              htmlFor="email"
+              htmlFor="username"
               className="absolute left-[-75px] top-[16px] text-gray-600 text-sm"
             >
               Username
             </label>
             <Input
-              id="email"
+              id="username"
               type="text"
-              autoComplete="email"
-              {...register("email")}
+              autoComplete="username"
+              {...register("username")}
               className={`border ${
-                errors.email ? "border-red-500" : "border-gray-300"
+                errors.username ? "border-red-500" : "border-gray-300"
               } w-full p-2`}
             />
-            {errors.email && (
+            {errors.username && (
               <p className="mt-2 text-sm text-red-600 dark:text-red-500">
-                {errors.email.message}
+                {errors.username.message}
               </p>
             )}
           </div>
@@ -95,23 +99,25 @@ const Login = (props: Props) => {
             >
               Password
             </label>
-            <Input
-              id="password"
-              type={showPassword ? "text" : "password"}
-              {...register("password")}
-              className={`border ${
-                errors.password ? "border-red-500" : "border-gray-300"
-              } w-full p-2`}
-            />
-            <div
-              className="absolute inset-y-0 right-0 pr-3 flex items-center cursor-pointer"
-              onClick={() => setShowPassword((prev) => !prev)}
-            >
-              {showPassword ? (
-                <EyeOff className="w-5 h-5" />
-              ) : (
-                <Eye className="w-5 h-5" />
-              )}
+            <div className="relative">
+              <Input
+                id="password"
+                type={showPassword ? "text" : "password"}
+                {...register("password")}
+                className={`border ${
+                  errors.password ? "border-red-500" : "border-gray-300"
+                } w-full p-2 pr-10`}
+              />
+              <div
+                className="absolute inset-y-0 right-0 flex items-center pr-3 cursor-pointer"
+                onClick={() => setShowPassword((prev) => !prev)}
+              >
+                {showPassword ? (
+                  <EyeOff className="w-5 h-5" />
+                ) : (
+                  <Eye className="w-5 h-5" />
+                )}
+              </div>
             </div>
             {errors.password && (
               <p className="text-red-500 text-sm">{errors.password.message}</p>

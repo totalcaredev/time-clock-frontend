@@ -22,7 +22,7 @@ const baseQuery = fetchBaseQuery({
   baseUrl: BASE_URL,
   credentials: "include",
   prepareHeaders: (headers, { getState }) => {
-    const accessToken = (getState() as RootState).user.accessToken;
+    const accessToken = (getState() as RootState).userReducer.accessToken;
 
     if (accessToken) {
       headers.set("authorization", `Bearer ${accessToken}`);
