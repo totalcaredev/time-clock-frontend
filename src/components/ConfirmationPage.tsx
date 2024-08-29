@@ -20,8 +20,8 @@ const ConfirmationPage = ({
       <div className="text-center">
         <img src={logo} alt="logo" />
         <p className="mt-6 text-4xl font-bold text-blue-900">
-          ({firstName} {lastName}) you have been clocked
-          {clockStatus === "in" ? "in" : "out"} at {dateTime}
+          {firstName} {lastName} you have been clocked
+          {clockStatus === "in" ? " in" : " out"} at {dateTime}
         </p>
       </div>
     </div>

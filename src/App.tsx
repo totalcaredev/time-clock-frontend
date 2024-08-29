@@ -14,8 +14,8 @@ function App() {
           path="/confirmation-page"
           element={
             <ConfirmationPage
-              firstName="issa"
-              lastName="halabi"
+              firstName="Issa"
+              lastName="Al Halabi"
               clockStatus="in"
               dateTime="2024-08-28 at 14:00"
             />
